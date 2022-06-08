@@ -1,6 +1,9 @@
-pragma solidity >=0.5.0 < 0.9.0;
+//SPDX-License-Identifier: Unlicense
+pragma solidity >=0.5.0 <0.9.0;
 
-contract Token(
+import "hardhat/console.sol";
+
+contract Token{
     string public name = "Wojtek Bear";
     string public symbol = "WTK";
     uint public totalSupply = 10000;
@@ -13,10 +16,14 @@ contract Token(
         owner = msg.sender;
     }
 
-    function transfer(address to, unint amount) external{
+    function transfer(address to, uint amount) external{
+        console.log("*** sender balance is %s tokens",balances[msg.sender]);
+        console.log("*** sender is sending %s tokens to %s address", amount, to);
         require(balances[msg.sender] >= amount, "Not enough tokens");
         balances[msg.sender] -= amount;
         balances[to] += amount;
     }
-
-)
+    function balanceOf(address account) external view returns(uint){
+        return balances[account];
+    }
+}
