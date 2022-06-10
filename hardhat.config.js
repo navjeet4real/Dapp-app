@@ -17,6 +17,16 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
  * @type import('hardhat/config').HardhatUserConfig
  */
 require("@nomiclabs/hardhat-waffle")
+
+const ALCHEMY_API_KEY = "O9Yk-8K6DuuQPDxLdP0xVukY1O-2FNVZ";
+const RINKEBY_PRIVATE_KEY = "c5520a889e40c46c469b380ce2f22f1cd588c3fb4889f2f98ddfcdcf5b7b427c";
 module.exports = {
   solidity: "0.8.4",
+
+  networks:{
+    rinkeby:{
+      url: `https://eth-rinkeby.alchemyapi.io/v2/${ALCHEMY_API_KEY}`,
+      accounts:[`${RINKEBY_PRIVATE_KEY}`]
+    }
+  }
 };
